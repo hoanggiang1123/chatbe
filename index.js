@@ -14,6 +14,8 @@ const io = require('socket.io')(http, {
     }
 });
 
+io.origins(["http://localhost:3456"]); // for local development
+
 const mysql = require('mysql');
 
 var connection = mysql.createConnection({
