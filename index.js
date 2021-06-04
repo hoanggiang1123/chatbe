@@ -27,7 +27,6 @@ var connection = mysql.createConnection({
 connection.connect((err) => {
     if (err) console.log(err + '')
 });
- 
 
 io.on('connection', (socket) => {
     socket.on('USER_LOGIN', async (token) => {
@@ -64,7 +63,7 @@ io.on('connection', (socket) => {
     });
 
     socket.on('USER_SEND_CHAT', (message) => {
-       const chatObj = { username: socket.user.username, message };
+       const chatObj = { username: socket.user.username, message, created_at: new Date() };
        
        connection.query('INSERT INTO chat SET ?', chatObj, (error, results, fields) => {
             if (!error) {
