@@ -8,10 +8,7 @@ require('dotenv').config();
 const axios = require('axios');
 const PORT = 7000 || process.env.PORT;
 const io = require('socket.io')(http, {
-    cors: {
-        origin: process.env.FRONT_DOMAIN,
-        methods: ["GET", "POST"]
-    }
+    origins: [process.env.DEV_DOMAIN, process.env.FRONT_DOMAIN]
 });
 
 const mysql = require('mysql');
@@ -64,6 +61,7 @@ io.on('connection', (socket) => {
 
     socket.on('USER_SEND_CHAT', (message) => {
        const chatObj = { username: socket.user.username, message };
+
        connection.query('INSERT INTO chat SET ?', chatObj, (error, results, fields) => {
             if (!error) {
                 connection.query('SELECT * FROM chat WHERE id = ?' , [results.insertId], (error, results, fields) => {
