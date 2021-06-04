@@ -7,14 +7,10 @@ require('dotenv').config();
 
 const axios = require('axios');
 const PORT = 7000 || process.env.PORT;
-const io = require('socket.io')(http, {
-    cors: {
-        origin: process.env.FRONT_DOMAIN,
-        methods: ["GET", "POST"]
-    }
-});
+const io = require('socket.io')(http);
 
-io.origins(["http://localhost:3456"]); // for local development
+io.origins([process.env.DEV_DOMAIN]); 
+io.origins([process.env.FRONT_DOMAIN]);// for local development
 
 const mysql = require('mysql');
 
