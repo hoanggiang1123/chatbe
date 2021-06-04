@@ -79,6 +79,8 @@ io.on('connection', (socket) => {
 
 });
 
-
+app.get('/', (req, res) => {
+    res.send('ok');
+});
 
 http.listen(PORT, () => console.log('App running on port ' + PORT));
