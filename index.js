@@ -18,9 +18,9 @@ const mysql = require('mysql');
 
 var connection = mysql.createConnection({
     host     : 'localhost',
-    user     : 'root',
-    password : '',
-    database : 'livechat'
+    user     : process.env.USER,
+    password : process.env.PASSWORD,
+    database : process.env.DATABASE
 });
 
 connection.connect((err) => {
