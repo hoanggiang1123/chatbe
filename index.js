@@ -6,7 +6,7 @@ const http = require('http').createServer(app);
 require('dotenv').config();
 
 const axios = require('axios');
-const PORT = 7000 || process.env.PORT;
+const PORT = process.env.PORT || 6000;
 
 var whitelist = [process.env.DEV_DOMAIN, process.env.FRONT_DOMAIN];
 
